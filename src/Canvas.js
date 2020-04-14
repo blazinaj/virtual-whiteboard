@@ -61,7 +61,7 @@ const Canvas = (props) => {
           }
         });
 
-    window.addEventListener('mouseup', (e) => {
+    const handleDraw = (e) => {
       // If we are clicking on a button, do not update anything
       if (e.target.name === 'clearbutton') return;
       setBrushColor(rand());
@@ -83,6 +83,14 @@ const Canvas = (props) => {
             console.log('canvas updated!')
           })
           .catch(err => console.log('error creating: ', err))
+    };
+
+    window.addEventListener('mouseup', (e) => {
+      handleDraw(e)
+    });
+
+    window.addEventListener('touchend', (e) => {
+      handleDraw(e)
     });
 
     API.graphql(graphqlOperation(onUpdateCanvas))

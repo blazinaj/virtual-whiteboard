@@ -28,3 +28,42 @@ export const onDeleteCanvas = /* GraphQL */ `
     }
   }
 `;
+export const onCreateWhiteBoard = /* GraphQL */ `
+  subscription OnCreateWhiteBoard {
+    onCreateWhiteBoard {
+      id
+      name
+      canvas {
+        id
+        clientId
+        data
+      }
+    }
+  }
+`;
+export const onUpdateWhiteBoard = /* GraphQL */ `
+  subscription OnUpdateWhiteBoard {
+    onUpdateWhiteBoard {
+      id
+      name
+      canvas {
+        id
+        clientId
+        data
+      }
+    }
+  }
+`;
+export const onDeleteWhiteBoard = /* GraphQL */ `
+  subscription OnDeleteWhiteBoard {
+    onDeleteWhiteBoard {
+      id
+      name
+      canvas {
+        id
+        clientId
+        data
+      }
+    }
+  }
+`;

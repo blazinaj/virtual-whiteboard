@@ -3,3 +3,9 @@ type Canvas @model {
   clientId: String!
   data: String!
 }
+
+type WhiteBoard @model {
+  id: ID!
+  name: String!
+  canvas: Canvas @connection
+}

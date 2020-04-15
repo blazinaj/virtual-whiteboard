@@ -6,6 +6,7 @@ import uuid from 'uuid/v4'
 import { API, graphqlOperation } from 'aws-amplify'
 import { onUpdateCanvas } from './graphql/subscriptions'
 import { updateCanvas, createCanvas } from './graphql/mutations'
+import ToolbarDrawer from "./views/Toolbar/components/ToolbarDrawer";
 
 const colors = [
   '#D50000',
@@ -141,15 +142,22 @@ const Canvas = (props) => {
 
   return (
     <div>
-      <button name='clearbutton' onClick={() => clear()}>Clear</button>
-      <CanvasDraw
-        canvasWidth={canvasWidth}
-        canvasHeight={canvasHeight}
-        brushRadius={brushRadius}
-        lazyRadius={lazyRadius}
-        brushColor={brushColor}
-        ref={canvas => canvasRef.current = canvas}
+      <ToolbarDrawer
+        colors={colors}
+        selectedColor={brushColor}
+        setSelectedColor={setBrushColor}
+        body={
+          <CanvasDraw
+              canvasWidth={canvasWidth}
+              canvasHeight={canvasHeight}
+              brushRadius={brushRadius}
+              lazyRadius={lazyRadius}
+              brushColor={brushColor}
+              ref={canvas => canvasRef.current = canvas}
+          />
+        }
       />
+      <button name='clearbutton' onClick={() => clear()}>Clear</button>
     </div>
   );
 };

@@ -26,3 +26,36 @@ export const listCanvass = /* GraphQL */ `
     }
   }
 `;
+export const getWhiteBoard = /* GraphQL */ `
+  query GetWhiteBoard($id: ID!) {
+    getWhiteBoard(id: $id) {
+      id
+      name
+      canvas {
+        id
+        clientId
+        data
+      }
+    }
+  }
+`;
+export const listWhiteBoards = /* GraphQL */ `
+  query ListWhiteBoards(
+    $filter: ModelWhiteBoardFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listWhiteBoards(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        canvas {
+          id
+          clientId
+          data
+        }
+      }
+      nextToken
+    }
+  }
+`;

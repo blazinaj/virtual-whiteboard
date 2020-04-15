@@ -37,3 +37,51 @@ export const deleteCanvas = /* GraphQL */ `
     }
   }
 `;
+export const createWhiteBoard = /* GraphQL */ `
+  mutation CreateWhiteBoard(
+    $input: CreateWhiteBoardInput!
+    $condition: ModelWhiteBoardConditionInput
+  ) {
+    createWhiteBoard(input: $input, condition: $condition) {
+      id
+      name
+      canvas {
+        id
+        clientId
+        data
+      }
+    }
+  }
+`;
+export const updateWhiteBoard = /* GraphQL */ `
+  mutation UpdateWhiteBoard(
+    $input: UpdateWhiteBoardInput!
+    $condition: ModelWhiteBoardConditionInput
+  ) {
+    updateWhiteBoard(input: $input, condition: $condition) {
+      id
+      name
+      canvas {
+        id
+        clientId
+        data
+      }
+    }
+  }
+`;
+export const deleteWhiteBoard = /* GraphQL */ `
+  mutation DeleteWhiteBoard(
+    $input: DeleteWhiteBoardInput!
+    $condition: ModelWhiteBoardConditionInput
+  ) {
+    deleteWhiteBoard(input: $input, condition: $condition) {
+      id
+      name
+      canvas {
+        id
+        clientId
+        data
+      }
+    }
+  }
+`;

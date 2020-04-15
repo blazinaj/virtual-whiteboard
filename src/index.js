@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Canvas from './Canvas';
 import * as serviceWorker from './serviceWorker';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+import 'typeface-roboto';
 
 import Amplify from 'aws-amplify'
 import config from './aws-exports'
-Amplify.configure(config)
+Amplify.configure(config);
 
 ReactDOM.render(<Canvas />, document.getElementById('root'));
 

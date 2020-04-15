@@ -170,7 +170,7 @@ const ToolbarDrawer = (
         </div>
         <Divider />
         <List>
-          <ListItem button>
+          <ListItem>
             <ListItemIcon>
               <FormControl className={classes.formControl}>
                 <Select

@@ -42,16 +42,17 @@ const Canvas = (props) => {
   const [hideGrid, setHideGrid] = useState(false);
 
   const canvasRef = useRef(null);
-  // const [canvasRef, setCanvasRef] = useState("");
+
+  const [selectedId, setSelectedId] = useState("123");
 
   let lineLength = 0;
-  const id = '123';
+  const id = selectedId;
   const clientId = uuid();
   const canvasInfo = 'tempcanvas';
 
   useEffect(() => {
     const canvas = {
-      id: id,
+      id: selectedId,
       clientId: clientId,
       data: {
         canvasHeight,
@@ -103,6 +104,10 @@ const Canvas = (props) => {
       handleDraw(e)
     });
 
+    window.addEventListener('pointerup', (e) => {
+      handleDraw(e)
+    });
+
     API.graphql(graphqlOperation(onUpdateCanvas))
       .subscribe({
         next: (d) => {
@@ -126,7 +131,7 @@ const Canvas = (props) => {
           canvasRef.current.simulateDrawingLines({ lines: [last] })
         }
       })
-  }, []);
+  }, [selectedId]);
 
   const clear = () => {
     const data = canvasRef.current.getSaveData();
@@ -157,9 +162,10 @@ const Canvas = (props) => {
     hideGrid,
     setHideGrid,
     brushRadius,
-    setBrushRadius
+    setBrushRadius,
+    selectedId,
+    setSelectedId
   };
-
 
   return (
     <div>

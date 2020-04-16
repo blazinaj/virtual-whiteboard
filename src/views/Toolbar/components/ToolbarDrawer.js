@@ -27,6 +27,7 @@ import CanvasDraw from "../../../RCD";
 import Fab from "@material-ui/core/Fab";
 import Slider from "@material-ui/core/Slider";
 import InputLabel from "@material-ui/core/InputLabel";
+import ListWhiteBoards from "../../WhiteBoard/components/ListWhiteBoards";
 
 const drawerWidth = 240;
 
@@ -108,7 +109,9 @@ const ToolbarDrawer = (
     setHideGrid,
     clear,
     brushRadius,
-    setBrushRadius
+    setBrushRadius,
+    selectedId,
+    setSelectedId
   }) => {
   const classes = useStyles();
   const theme = useTheme();
@@ -241,7 +244,7 @@ const ToolbarDrawer = (
               <ListItemIcon>
                 <Save/>
               </ListItemIcon>
-              <ListItemText primary="Save this whiteboard" />
+              <ListItemText primary="Create new whiteboard" />
             </ListItem>
             <ListItem button onClick={() => clear()}>
               <ListItemIcon>
@@ -250,6 +253,8 @@ const ToolbarDrawer = (
               <ListItemText primary="Delete this whiteboard" />
             </ListItem>
           </List>
+          <Divider/>
+          <ListWhiteBoards selectedId={selectedId} setSelectedId={setSelectedId}/>
         </div>
       </Drawer>
     </div>

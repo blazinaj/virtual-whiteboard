@@ -28,6 +28,11 @@ import Fab from "@material-ui/core/Fab";
 import Slider from "@material-ui/core/Slider";
 import InputLabel from "@material-ui/core/InputLabel";
 import ListWhiteBoards from "../../WhiteBoard/components/ListWhiteBoards";
+import Input from "@material-ui/core/Input";
+import Button from "@material-ui/core/Button";
+import {API, graphqlOperation} from "aws-amplify";
+import {createCanvas} from "../../../graphql/mutations";
+// import {AmplifyChatbot} from "@aws-amplify/ui-react";
 
 const drawerWidth = 240;
 
@@ -111,11 +116,27 @@ const ToolbarDrawer = (
     brushRadius,
     setBrushRadius,
     selectedId,
-    setSelectedId
+    setSelectedId,
+    canvas
   }) => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+
+  const [openInput, setOpenInput] = useState(false);
+
+  const [newID, setNewID] = useState("");
+
+  const saveID = (e) => {
+    // Create the canvas. If canvas is already created, retrieve the data & draw previous canvas
+    API.graphql(graphqlOperation(createCanvas, { input: canvas }))
+      .then(d => console.log('canvas created :', d))
+      .catch(err => {console.log(err)});
+    e.stopPropagation();
+    setSelectedId(newID);
+    setNewID("");
+    setOpenInput(false);
+  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -149,7 +170,7 @@ const ToolbarDrawer = (
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Virtual Whiteboard
+            Whiteboard
           </Typography>
         </Toolbar>
       </AppBar>
@@ -217,13 +238,19 @@ const ToolbarDrawer = (
             </ListItemIcon>
             <ListItemText primary="Grid" />
           </ListItem>
+
+          {/*<AmplifyChatbot*/}
+          {/*  botName="yourBotName"*/}
+          {/*  botTitle="My ChatBot"*/}
+          {/*  welcomeMessage="Hello, how can I help you?"*/}
+          {/*/>*/}
         </List>
       </Drawer>
       <main className={classes.content}>
         {React.cloneElement(body)}
       </main>
       <Fab
-        onClick={() => setSaveMenuIsOpen(true)}
+        onClick={(e) => {e.stopPropagation(); setSaveMenuIsOpen(true)}}
         color="primary"
         style={{
           position: "absolute",
@@ -240,17 +267,29 @@ const ToolbarDrawer = (
           })}
         >
           <List>
-            <ListItem button>
-              <ListItemIcon>
-                <Save/>
-              </ListItemIcon>
-              <ListItemText primary="Create new whiteboard" />
-            </ListItem>
+            {
+              openInput ?
+                <ListItem>
+                  <Input value={newID} onChange={(e) => setNewID(e.target.value)} />
+                  <Button
+                    onClick={(e) => saveID(e)}
+                  >
+                    Save
+                  </Button>
+                </ListItem>
+                :
+                <ListItem button onClick={(e) => {e.stopPropagation(); setOpenInput(true)}}>
+                  <ListItemIcon>
+                    <Save/>
+                  </ListItemIcon>
+                  <ListItemText primary="Create a Whiteboard" />
+                </ListItem>
+            }
             <ListItem button onClick={() => clear()}>
               <ListItemIcon>
                 <Delete/>
               </ListItemIcon>
-              <ListItemText primary="Delete this whiteboard" />
+              <ListItemText primary="Clear this whiteboard" />
             </ListItem>
           </List>
           <Divider/>

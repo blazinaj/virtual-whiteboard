@@ -1,0 +1,33 @@
+type Canvas
+@model (subscriptions: { level: public })
+@auth(rules: [{
+  allow: public,
+  provider: iam,
+  operations: [create, update, delete, read]
+}])
+{
+  id: ID!
+  clientId: String!
+  data: String!
+}
+
+type WhiteBoard
+@model (subscriptions: { level: public })
+@auth(rules: [{
+  allow: public,
+  provider: iam,
+  operations: [create, update, delete, read]
+}])
+{
+  id: ID!
+  name: String!
+  canvas: Canvas @connection
+}
+
+type User @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  firstName: String
+  lastName: String
+  nickName: String
+  email: String
+}

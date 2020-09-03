@@ -7,6 +7,8 @@ export const getCanvas = /* GraphQL */ `
       id
       clientId
       data
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -21,6 +23,8 @@ export const listCanvass = /* GraphQL */ `
         id
         clientId
         data
+        createdAt
+        updatedAt
       }
       nextToken
     }
@@ -35,7 +39,11 @@ export const getWhiteBoard = /* GraphQL */ `
         id
         clientId
         data
+        createdAt
+        updatedAt
       }
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -53,7 +61,46 @@ export const listWhiteBoards = /* GraphQL */ `
           id
           clientId
           data
+          createdAt
+          updatedAt
         }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getUser = /* GraphQL */ `
+  query GetUser($id: ID!) {
+    getUser(id: $id) {
+      id
+      firstName
+      lastName
+      nickName
+      email
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const listUsers = /* GraphQL */ `
+  query ListUsers(
+    $filter: ModelUserFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        firstName
+        lastName
+        nickName
+        email
+        createdAt
+        updatedAt
+        owner
       }
       nextToken
     }

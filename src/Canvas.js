@@ -127,6 +127,7 @@ const Canvas = (props) => {
   }, []);
 
   const clear = () => {
+    console.log("Clearing Canvas..");
     const data = canvasRef.current.getSaveData();
     const parsedData = JSON.parse(data);
     const newData = {

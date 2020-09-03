@@ -7,6 +7,8 @@ export const onCreateCanvas = /* GraphQL */ `
       id
       clientId
       data
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -16,6 +18,8 @@ export const onUpdateCanvas = /* GraphQL */ `
       id
       clientId
       data
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -25,6 +29,8 @@ export const onDeleteCanvas = /* GraphQL */ `
       id
       clientId
       data
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -37,7 +43,11 @@ export const onCreateWhiteBoard = /* GraphQL */ `
         id
         clientId
         data
+        createdAt
+        updatedAt
       }
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -50,7 +60,11 @@ export const onUpdateWhiteBoard = /* GraphQL */ `
         id
         clientId
         data
+        createdAt
+        updatedAt
       }
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -63,7 +77,53 @@ export const onDeleteWhiteBoard = /* GraphQL */ `
         id
         clientId
         data
+        createdAt
+        updatedAt
       }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateUser = /* GraphQL */ `
+  subscription OnCreateUser($owner: String!) {
+    onCreateUser(owner: $owner) {
+      id
+      firstName
+      lastName
+      nickName
+      email
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onUpdateUser = /* GraphQL */ `
+  subscription OnUpdateUser($owner: String!) {
+    onUpdateUser(owner: $owner) {
+      id
+      firstName
+      lastName
+      nickName
+      email
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onDeleteUser = /* GraphQL */ `
+  subscription OnDeleteUser($owner: String!) {
+    onDeleteUser(owner: $owner) {
+      id
+      firstName
+      lastName
+      nickName
+      email
+      createdAt
+      updatedAt
+      owner
     }
   }
 `;

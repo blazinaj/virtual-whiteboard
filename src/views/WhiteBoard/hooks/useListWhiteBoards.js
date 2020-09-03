@@ -14,7 +14,12 @@ export const useListWhiteBoards = ({selectedId, setSelectedId}) => {
         {
           query.list &&
             query.list.map(({id}, index) =>
-              <ListItem key={index} style={{color: selectedId === }}>
+              <ListItem
+                style={{backgroundColor: selectedId === id ? "lightBlue" : undefined}}
+                key={index}
+                button
+                onClick={() => setSelectedId(id)}
+              >
                 {id}
               </ListItem>
             )
@@ -24,7 +29,8 @@ export const useListWhiteBoards = ({selectedId, setSelectedId}) => {
 
   return {
     display,
-    list: query.list
+    list: query.list,
+    reset: query.reset
   }
 
 };

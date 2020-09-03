@@ -34,11 +34,7 @@
     "useDefault": "manual",
     "authSelections": "identityPoolAndUserPool",
     "resourceName": "auth",
-    "thirdPartyAuth": true,
-    "authProviders": [
-        "graph.facebook.com",
-        "accounts.google.com"
-    ],
+    "thirdPartyAuth": false,
     "userPoolGroups": true,
     "adminQueries": true,
     "triggers": "{}",

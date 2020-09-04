@@ -44,6 +44,17 @@ export const getWhiteBoard = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      messages {
+        items {
+          id
+          content
+          rating
+          whiteBoardID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
     }
   }
 `;
@@ -66,22 +77,84 @@ export const listWhiteBoards = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        messages {
+          nextToken
+        }
       }
       nextToken
     }
   }
 `;
-export const getUser = /* GraphQL */ `
-  query GetUser($id: ID!) {
-    getUser(id: $id) {
+export const getMessage = /* GraphQL */ `
+  query GetMessage($id: ID!) {
+    getMessage(id: $id) {
       id
-      firstName
-      lastName
-      nickName
-      email
+      content
+      rating
+      whiteBoard {
+        id
+        name
+        canvas {
+          id
+          clientId
+          data
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+        messages {
+          nextToken
+        }
+      }
+      whiteBoardID
       createdAt
       updatedAt
-      owner
+      author {
+        id
+        firstName
+        lastName
+        nickName
+        email
+        createdAt
+        updatedAt
+        owner
+      }
+    }
+  }
+`;
+export const listMessages = /* GraphQL */ `
+  query ListMessages(
+    $filter: ModelMessageFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listMessages(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        content
+        rating
+        whiteBoard {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        whiteBoardID
+        createdAt
+        updatedAt
+        author {
+          id
+          firstName
+          lastName
+          nickName
+          email
+          createdAt
+          updatedAt
+          owner
+        }
+      }
+      nextToken
     }
   }
 `;
@@ -103,6 +176,20 @@ export const listUsers = /* GraphQL */ `
         owner
       }
       nextToken
+    }
+  }
+`;
+export const getUser = /* GraphQL */ `
+  query GetUser($id: ID!) {
+    getUser(id: $id) {
+      id
+      firstName
+      lastName
+      nickName
+      email
+      createdAt
+      updatedAt
+      owner
     }
   }
 `;

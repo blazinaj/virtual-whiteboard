@@ -60,6 +60,17 @@ export const createWhiteBoard = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      messages {
+        items {
+          id
+          content
+          rating
+          whiteBoardID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
     }
   }
 `;
@@ -80,6 +91,17 @@ export const updateWhiteBoard = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      messages {
+        items {
+          id
+          content
+          rating
+          whiteBoardID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
     }
   }
 `;
@@ -100,6 +122,140 @@ export const deleteWhiteBoard = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      messages {
+        items {
+          id
+          content
+          rating
+          whiteBoardID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const createMessage = /* GraphQL */ `
+  mutation CreateMessage(
+    $input: CreateMessageInput!
+    $condition: ModelMessageConditionInput
+  ) {
+    createMessage(input: $input, condition: $condition) {
+      id
+      content
+      rating
+      whiteBoard {
+        id
+        name
+        canvas {
+          id
+          clientId
+          data
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+        messages {
+          nextToken
+        }
+      }
+      whiteBoardID
+      createdAt
+      updatedAt
+      author {
+        id
+        firstName
+        lastName
+        nickName
+        email
+        createdAt
+        updatedAt
+        owner
+      }
+    }
+  }
+`;
+export const updateMessage = /* GraphQL */ `
+  mutation UpdateMessage(
+    $input: UpdateMessageInput!
+    $condition: ModelMessageConditionInput
+  ) {
+    updateMessage(input: $input, condition: $condition) {
+      id
+      content
+      rating
+      whiteBoard {
+        id
+        name
+        canvas {
+          id
+          clientId
+          data
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+        messages {
+          nextToken
+        }
+      }
+      whiteBoardID
+      createdAt
+      updatedAt
+      author {
+        id
+        firstName
+        lastName
+        nickName
+        email
+        createdAt
+        updatedAt
+        owner
+      }
+    }
+  }
+`;
+export const deleteMessage = /* GraphQL */ `
+  mutation DeleteMessage(
+    $input: DeleteMessageInput!
+    $condition: ModelMessageConditionInput
+  ) {
+    deleteMessage(input: $input, condition: $condition) {
+      id
+      content
+      rating
+      whiteBoard {
+        id
+        name
+        canvas {
+          id
+          clientId
+          data
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+        messages {
+          nextToken
+        }
+      }
+      whiteBoardID
+      createdAt
+      updatedAt
+      author {
+        id
+        firstName
+        lastName
+        nickName
+        email
+        createdAt
+        updatedAt
+        owner
+      }
     }
   }
 `;

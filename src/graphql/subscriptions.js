@@ -48,6 +48,17 @@ export const onCreateWhiteBoard = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      messages {
+        items {
+          id
+          content
+          rating
+          whiteBoardID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
     }
   }
 `;
@@ -65,6 +76,17 @@ export const onUpdateWhiteBoard = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      messages {
+        items {
+          id
+          content
+          rating
+          whiteBoardID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
     }
   }
 `;
@@ -82,6 +104,131 @@ export const onDeleteWhiteBoard = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      messages {
+        items {
+          id
+          content
+          rating
+          whiteBoardID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+    }
+  }
+`;
+export const onCreateMessage = /* GraphQL */ `
+  subscription OnCreateMessage {
+    onCreateMessage {
+      id
+      content
+      rating
+      whiteBoard {
+        id
+        name
+        canvas {
+          id
+          clientId
+          data
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+        messages {
+          nextToken
+        }
+      }
+      whiteBoardID
+      createdAt
+      updatedAt
+      author {
+        id
+        firstName
+        lastName
+        nickName
+        email
+        createdAt
+        updatedAt
+        owner
+      }
+    }
+  }
+`;
+export const onUpdateMessage = /* GraphQL */ `
+  subscription OnUpdateMessage {
+    onUpdateMessage {
+      id
+      content
+      rating
+      whiteBoard {
+        id
+        name
+        canvas {
+          id
+          clientId
+          data
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+        messages {
+          nextToken
+        }
+      }
+      whiteBoardID
+      createdAt
+      updatedAt
+      author {
+        id
+        firstName
+        lastName
+        nickName
+        email
+        createdAt
+        updatedAt
+        owner
+      }
+    }
+  }
+`;
+export const onDeleteMessage = /* GraphQL */ `
+  subscription OnDeleteMessage {
+    onDeleteMessage {
+      id
+      content
+      rating
+      whiteBoard {
+        id
+        name
+        canvas {
+          id
+          clientId
+          data
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+        messages {
+          nextToken
+        }
+      }
+      whiteBoardID
+      createdAt
+      updatedAt
+      author {
+        id
+        firstName
+        lastName
+        nickName
+        email
+        createdAt
+        updatedAt
+        owner
+      }
     }
   }
 `;
